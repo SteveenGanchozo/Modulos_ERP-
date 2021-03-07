@@ -1,0 +1,1 @@
+Realizar las configuraciones en Odoo para instalar estos módulos

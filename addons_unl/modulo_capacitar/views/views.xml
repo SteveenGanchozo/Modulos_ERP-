@@ -1,0 +1,59 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="modulo_capacitar.list">
+      <field name="name">Modulo Asistencia Capacitación list</field>
+      <field name="model">reg.capacitado</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="fecha" string="Fecha"/>
+          <field name="user" string="Instructor"/>
+          <field name="lista" string="Lista de Asistencia"/>
+          <field name="observaciones" string="Observaciones"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="modulo_capacitar.from_1">
+      <field name="name">Asistencia Capacitación form</field>
+      <field name="model">reg.capacitado</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group name="group_top1">
+              <group name="group_1" string="FECHA DE CAPACITACIÓN" col="2" colspan="2">
+                <field name="fecha" string="Fecha" style='width: 200px'/>
+              </group>
+            </group>
+            <group name="group_top2">
+              <group name="group_1" string="RESPONSABLE" col="2" colspan="3">
+                <field name="user" string="Instructor"/> 
+              </group>
+            </group>
+            <group name="group_mid">
+              <group name="group_2" string="ASISTENCIA" col="2" colspan="3">
+                <field name="lista" string="Lista de Asistencia"/>
+              </group>  
+            </group>
+            <group name="group_bot">
+              <group name="group_3" string="OBSERVACIONES" col="2" colspan="3">
+                <field name="observaciones" string="Observaciones"/>
+              </group>
+            </group>
+          </sheet>  
+        </form>
+      </field>
+    </record>
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="modulo_capacitar.action_window">
+      <field name="name">Asistencia Capacitación</field>
+      <field name="res_model">reg.capacitado</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem name="Asistencia Capacitación" id="modulo_capacitar.menu_1_list" parent="" action="modulo_capacitar.action_window"/>
+  </data>
+</odoo>

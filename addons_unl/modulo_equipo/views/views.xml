@@ -1,0 +1,91 @@
+<odoo>
+  <data>
+    <!-- Definición explícita de vista de lista -->
+    <record model="ir.ui.view" id="modulo_equipo.list">
+      <field name="name">Modulo Equipo list</field>
+      <field name="model">reg.equipo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="computador" string="Computador"/>
+          <field name="s_operativo" string="Sistema Operativo"/>
+          <field name="procesador" string="Procesador"/>
+          <field name="ram" string="RAM"/>
+          <field name="eq_migrado" string="Equipo Migrado"/>
+          <field name="migrable" string="Migrable"/>        
+        </tree>
+      </field>
+    </record>
+
+    <!-- Vista Formulario -->
+    <record model="ir.ui.view" id="modulo_equipo.from_1">
+      <field name="name">Equipo form</field>
+      <field name="model">reg.equipo</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group name="group_top">
+              <group name="group_1" string="Características del Equipo" col="2" colspan="3">
+                <field name="computador" string="Computador"/>
+                <field name="s_operativo" string="Sistema Operativo"/>
+                <field name="procesador" string="Procesador"/>
+                <field name="ram" string="RAM"/>
+                <field name="fabricante" string="Fabricante"/>
+                <field name="modelo" string="Modelo"/>
+              </group>
+            </group>
+            <group name="group_mid">
+              <group name="group_2" string="Migración de Aplicaciones Ofimáticas" col="2" colspan="3">
+                <field name="eq_migrado" string="Equipo Migrado" style='width: 60px'/>
+                <field name="migrable" string="Migrable" style='width: 60px'/>
+              </group>
+            </group>
+            <group name="group_bot">
+              <group name="group_3" string="Caracteristicas Extras" col="2" colspan="4">
+                <field name="descripcion" string="Descripcion"/>  
+              </group>
+            </group>
+          </sheet>  
+        </form>
+      </field>
+    </record> 
+    
+    <!-- Acción que abre la vista del modelo -->
+    <record model="ir.actions.act_window" id="modulo_equipo.action_window">
+      <field name="name">Equipos UNL</field>
+      <field name="res_model">reg.equipo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <!-- Acción Buscar y Filtrar Equipos -->
+    <record model="ir.ui.view" id="modulo_equipo_search">
+      <field name="name">modulo.equipo.search</field>
+      <field name="model">reg.equipo</field>
+      <field name="arch" type="xml">
+        <search string="Search Equipos">
+          <field name="computador"/>
+          <field name="s_operativo"/>
+          <field name="procesador"/>
+          <field name="ram"/>
+          <field name="fabricante"/>
+          <field name="modelo"/>
+          <field name="descripcion"/>
+          <filter string="Equipo Migrado" name="Migrado" domain="[('eq_migrado','ilike','Si')]"/>
+          <filter string="Equipo no Migrado" name="no Migrado" domain="[('eq_migrado','ilike','No')]"/>
+          <filter string="Migrable" name="Migrable" domain="[('migrable','ilike','Si')]"/>
+          <filter string="No Migrable" name="no Migrable" domain="[('migrable','ilike','No')]"/>
+          <filter string="SO: Microsoft Windows" name="Microsoft" domain="[('s_operativo','ilike','Microsoft')]"/>
+          <filter string="SO: Mac" name="Mac" domain="[('s_operativo','ilike','Mac')]"/>
+          <filter string="SO: Linux" name="Linux" domain="[('s_operativo','ilike','Linux')]"/>
+          <filter string="SO: Ubuntu" name="Ubuntu" domain="[('s_operativo','ilike','Ubuntu')]"/>
+          <filter string="SO: Unknown OS" name="Unknown OS" domain="[('s_operativo','ilike','Unknown OS')]"/>
+          <filter string="Procesador: AMD" name="AMD" domain="[('procesador','ilike','AMD')]"/>
+          <filter string="Procesador: Intel" name="Intel" domain="[('procesador','ilike','Intel')]"/>         
+        </search>
+      </field>
+    </record>  
+
+    <!-- Acciones -->
+    <menuitem name="Equipos UNL" id="modulo_equipo.menu_1_list" parent="" action="modulo_equipo.action_window"/>
+    <menuitem name="Descripción Extra" id="modulo_equipo.menu_1_list_1" parent="modulo_equipo.menu_1_list" 
+     action="modulo_descripción.action_window" sequence="1"/> 
+  </data>
+</odoo>

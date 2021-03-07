@@ -1,0 +1,63 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="modulo_migración.list">
+      <field name="name">Modulo Migración list</field>
+      <field name="model">reg.migracion</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="titulo" string="Título"/>
+          <field name="fecha" string="Fecha"/>
+          <field name="equipo" string="Equipos Migrados"/>
+          <field name="observaciones" string="Observaciones"/>
+          <field name="eq_migrado" string="Progreso"/>
+          <field name="respaldo_info" string="Respaldo de Información"/>
+          <field name="fechaSoftware" string="Proxima Actualización"/>
+          <field name="migrable" string="Equipos migrables"/>
+          <field name="user" string="Responsable"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="modulo_migración.from_1">
+      <field name="name">Migración form</field>
+      <field name="model">reg.migracion</field>
+      <field name="arch" type="xml">
+        <form>
+            <group name="group_top" string="MIGRACIÓN DE APLICACIONES OFIMÁTICAS" col="1">
+                <h2>
+                    <field name="titulo" default_focus="1" placeholder="Título"/>
+                </h2>
+              <group name="group_1" string="Equipos Migrados" col="2">
+                <field name="fecha" string="Fecha de Migración" style='width: 200px'/>
+                <field name="equipo" widget="many2many"/>
+              </group>
+              <group name="group_2" string="Descripción de la Migración" col="2">
+                <field name="eq_migrado" string="Progreso Migración" style='width: 60px'/>
+                <field name="respaldo_info" string="Respaldo de Información" style='width: 60px'/>
+                <field name="migrable" string="Equipos migrables" style='width: 60px'/>
+                <field name="fechaSoftware" string="Proxima Actualización" style='width: 200px'/>
+              </group>
+              <group name="group_2" string="Observaciones" col="2" colspan="3">
+                <field name="observaciones" string="Observaciones"/>
+              </group>
+              <group name="group_3" string="Responsable" col="2" colspan="2">
+                <field name="user" string="Responsable"/> 
+              </group>
+            </group>
+        </form>
+      </field>
+    </record>
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="modulo_migración.action_window">
+      <field name="name">Registro Migración</field>
+      <field name="res_model">reg.migracion</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem name="Registro Migración" id="modulo_migración.menu_1_list" parent="" action="modulo_migración.action_window"/>
+  </data>
+</odoo>
